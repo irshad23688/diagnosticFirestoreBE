@@ -1,0 +1,109 @@
+<div class="content-heading">Orders
+    <small><a [routerLink]=" ['/home'] ">Dashboard</a> -> Bookings Details</small>
+    </div>
+    <div class="panel panel-default">
+    <div class="panel-heading">Bookings Details</div>
+      <div class="table-responsive b0">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="text-center">
+                        <strong>#</strong>
+                    </th>
+                <th class="text-center">
+                        <strong>Booking Id</strong>
+                    </th>
+                <th class="text-center">
+                        <strong>Name</strong>
+                    </th>
+                    <th class="text-center">
+                        <strong>Lab Name</strong>
+                    </th>
+                    <th class="text-center">
+                        <strong>Appointment Date</strong>
+                    </th>
+                    <th class="text-center">
+                        <strong>Mobile Number</strong>
+                    </th>
+                    <th class="text-center">
+                        <strong>Status</strong>
+                    </th>
+                    <th class="text-center" *ngIf="roleKey!=='Admin'">
+                        <strong>Status Action</strong>
+                    </th>
+                    <th class="text-center">
+                        <strong>Payment Mode</strong>
+                    </th>
+                    <th class="text-center">
+                        <strong>Payment Status</strong>
+                    </th>
+                    <th class="text-center">
+                        <strong>Total</strong>
+                    </th>
+                    <th class="text-center" *ngIf="roleKey!=='Admin'">
+                        <strong>ACTION</strong>
+                    </th>
+                    <!-- <th class="text-center">
+                        <strong>View</strong>
+                    </th> -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="text-center" *ngFor="let item of bookings;let i = index ">
+                    <td>{{i+1}}</td>
+                    <td>{{item.bookingId}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.labName}}</td>
+                    <td>{{item.appointDate}}</td>
+                    <td>{{item.mobileNumber}}</td>
+                    <td class="text-center">
+                        <span class="label label-success" *ngIf="item.status=='Completed'">{{item.status}}
+                        </span>
+                        <span class="label label-warning" *ngIf="item.status =='Booked'">{{item.status}}</span>
+                        <span class="label label-danger" *ngIf="item.status=='Cancelled'">{{item.status}}</span>
+                    </td>
+                    <td class="text-center" *ngIf="roleKey!=='Admin'">
+                        <select class="input-sm form-control" (change)="OnChangeStatus(item.key,$event)" [disabled]="item.status=='Completed'">
+                            <option>Select Status</option>
+                            <option value="Booked">Booked</option>
+                            <option value="Cancelled">Cancelled</option>
+                            <option value="Completed">Completed</option>
+                             
+                        </select>
+                    </td>
+                    <td>{{item.modeOfPayment}}</td>
+                    
+                    <td class="text-center">
+                        <span class="label label-success" *ngIf="item.pStatus=='SUCCESS'">Paid</span>
+                        <span class="label label-warning" *ngIf="item.pStatus =='Pending'">Pending</span>
+                        <span class="label label-danger" *ngIf="item.pStatus =='FAILURE'">Failed</span>
+                    </td>
+                    <td>Rs.{{item.serviceRate | number }}</td>
+                    <td class="text-center" *ngIf="roleKey!=='Admin'">
+                        <select class="input-sm form-control" (change)="OnChangePaymentStatus(item.key,$event)" [disabled]="item.pStatus=='SUCCESS'">
+                            <option>Select Status</option>
+                            <option value="Pending">Pending</option>
+                            <option value="SUCCESS">Paid</option>
+                            <option value="FAILURE">FAILURE</option>
+                             
+                             
+                        </select>
+                    </td>
+                    <!-- <td class="text-center">
+                        <button class="btn btn-sm btn-default" type="button" (click)="ordersShow(item.key)">
+                            <em class="fa fa-search"></em>
+                        </button>
+                    </td> -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="!loaderShow" id="loader"></div>
+
+    
+    <div class="panel-footer">
+            <div class="row">
+            
+            </div>
+        </div>
+    </div>

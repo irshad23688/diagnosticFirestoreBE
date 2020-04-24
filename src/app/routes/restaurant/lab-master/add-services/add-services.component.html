@@ -1,0 +1,11 @@
+<div mat-dialog-actions style="text-align:center">
+  <form [formGroup]="addService" (ngSubmit)="logForm()">
+    <mat-form-field class="matFieldWidth" appearance="outline">
+      <mat-label>Service</mat-label>
+      <input matInput formControlName='serviceName' placeholder="Service Name">
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="onNoClick()">Cancel</button>
+    <button type="submit"mat-raised-button color="primary" [disabled]="!addService.valid" cdkFocusInitial>Submit</button>
+  </form>
+
+</div>

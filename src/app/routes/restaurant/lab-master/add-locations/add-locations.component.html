@@ -1,0 +1,12 @@
+<div mat-dialog-actions style="text-align:center">
+    <form [formGroup]="addLocations" (ngSubmit)="logForm()">
+      <mat-form-field class="matFieldWidth" appearance="outline">
+        <mat-label>Location</mat-label>
+        <input matInput formControlName='location' placeholder="Location">
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="onNoClick()">Cancel</button>
+      <button type="submit"mat-raised-button color="primary" [disabled]="!addLocations.valid" cdkFocusInitial>Submit</button>
+    </form>
+  
+  </div>
+  

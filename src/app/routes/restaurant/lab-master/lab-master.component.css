@@ -1,0 +1,45 @@
+
+.matFieldWidth{
+    width: 51%;
+}
+.textAlign{
+    text-align: center;
+}
+.mat2FieldWidth{
+    width: 25%;
+}
+.cancelBtn {
+    float: right;
+    color: white;
+    background-color: #f902029c;
+    width: 30px;
+    height: 30px;
+    border: none;
+}
+
+.addBtn {
+    float: right;
+    background-color: #ff6c0096;
+    font-size: 18px;
+    border-radius: 6px;
+    color: white;
+    height: 30px;
+    margin-top: 10px;
+    margin-right: 10px;
+    width: 30px;
+    border: none;
+}
+.matCard{
+    margin: 0px 150px 0px 150px;
+    background-color: rgba(251, 245, 245, 0.678);
+}
+.serviceAndPriceField{
+    width: 40%
+}
+.panelHeader{
+    font-weight: bold;
+    font-size: 16px;
+}
+.expansionPanel{
+    background-color: lightblue;
+}

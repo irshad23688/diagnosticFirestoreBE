@@ -1,0 +1,67 @@
+<div class="content-heading">Lab Users Detail
+     
+    <small><a [routerLink]=" ['/home'] ">Dashboard</a> -> Lab Users Detail</small>
+</div>
+<!-- Zero Configuration-->
+<div class="panel panel-default">
+    <div class="panel-heading">All Lab Users Information</div>
+    <div class="panel-body">
+        <div class="table-responsive customTable">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th class="thsearch text-center">
+                        Name
+                    </th>
+                    <th class="thsearch text-center">
+                        Email
+                    </th>
+                    <th class="thsearch text-center">
+                        Mobile Number
+                    </th>
+                    <th class="thsearch text-center">
+                        Lab Assigned
+                    </th>
+                    <!-- <th class="thnosearch  text-center">
+                        Update
+                    </th> -->
+                    <th class="thnosearch  text-center">
+                        Delete
+                    </th>
+
+                    <th class="thnoitem"></th>
+                </tr>
+                </thead>
+                <tbody>
+                        
+                <tr class=" text-center" *ngFor="let item of labusers;let i =index" >
+                    <td>{{item.name}}
+                    <td>{{item.email}}</td>
+                    <td>{{item.mobileNo}}</td>
+                    <td>
+                        <select (change)="labusersUpdate(item.key,item.labkey)" class="input-sm form-control" name="role_{{i+1}}" id="role_{{i+1}}" [(ngModel)]="item.labkey" >
+                        <option>Select Role</option>
+                        <option value="{{item.key}}" *ngFor="let item of labs;">{{item.labname}}</option>
+                        
+                    </select></td>
+                    <!-- <td>
+                        <button class="btn btn-sm btn-default" type="button" (click)="labusersUpdate(item.key,item.labkey)"><em
+                                class="fa fa-pencil"></em></button>
+                    </td> -->
+                    <td>
+                        <button class="btn btn-sm btn-danger" type="button" (click)="labusersDelete(item.key)"><em
+                                class="fa fa-trash-o"></em></button>
+                    </td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="5">
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+<div *ngIf="!loaderShow" id="loader"></div>

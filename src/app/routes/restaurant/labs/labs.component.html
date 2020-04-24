@@ -1,0 +1,95 @@
+<div class="content-heading">Labs Detail
+  <div class="pull-right">
+    <label class="file-upload">
+      <a [routerLink]="'/lab-master'">
+        <button class="btn btn-warning"><em class="fa fa-plus"></em>&nbsp;&nbsp; Add New Lab</button>
+      </a>
+    </label>
+  </div>
+  <small><a [routerLink]=" ['/home'] ">Dashboard</a> -> Labs Detail</small>
+</div>
+<!-- Zero Configuration-->
+<div class="panel panel-default">
+  <div class="panel-heading">All Labs Information</div>
+  <div class="panel-body">
+
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Search">
+    </mat-form-field>
+
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let element; let i = index;">
+            {{ (paginatorRef.pageIndex * paginatorRef.pageSize) + (i + 1) }} </td>
+        </ng-container>
+        <!-- ID Column -->
+        <ng-container matColumnDef="labName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Lab Name </th>
+          <td mat-cell *matCellDef="let row"> {{row.labname}} </td>
+        </ng-container>
+
+        <!-- Progress Column -->
+        <ng-container matColumnDef="address">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Lab Address </th>
+          <td mat-cell *matCellDef="let row"> {{row.address}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="area">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Area </th>
+          <td mat-cell *matCellDef="let row"> {{row.area}} -{{row.pincode}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="personName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Contact Person Name </th>
+          <td mat-cell *matCellDef="let row"> {{row.personname}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Email</th>
+          <td mat-cell *matCellDef="let row"> {{row.email}} </td>
+        </ng-container>
+
+        <!-- Color Column -->
+        <ng-container matColumnDef="mnumber">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Mobile Number </th>
+          <td mat-cell *matCellDef="let row"> {{row.mobilenumber}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="service">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Service </th>
+          <td mat-cell *matCellDef="let element;">
+            <ul *ngFor="let serv of element.services">
+             <li>{{serv.service}}</li>
+            </ul>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Price(Rupees) </th>
+          <td mat-cell *matCellDef="let element" style="text-align:center">
+            <ul *ngFor="let pr of element.services">
+             <li style="text-align:left">Rs.{{pr.price}}</li>
+            </ul> </td>
+        </ng-container>
+        <ng-container matColumnDef="active">
+          <th mat-header-cell *matHeaderCellDef> Active </th>
+          <td mat-cell *matCellDef="let element">
+            <mat-slide-toggle (change)="onChange($event,element.key)" [checked]=element.isActive>
+            </mat-slide-toggle>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+        </tr>
+      </table>
+
+      <mat-paginator #paginatorRef 
+        [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+  </div>
+</div>
+<div *ngIf="!loaderShow" id="loader"></div>
