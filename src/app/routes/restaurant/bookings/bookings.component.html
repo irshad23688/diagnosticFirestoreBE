@@ -78,7 +78,7 @@
                         <span class="label label-warning" *ngIf="item.pStatus =='Pending'">Pending</span>
                         <span class="label label-danger" *ngIf="item.pStatus =='FAILURE'">Failed</span>
                     </td>
-                    <td>Rs.{{item.serviceRate | number }}</td>
+                    <td>Rs.{{item.payableAmount | number }}</td>
                     <td class="text-center" *ngIf="roleKey!=='Admin'">
                         <select class="input-sm form-control" (change)="OnChangePaymentStatus(item.key,$event)" [disabled]="item.pStatus=='SUCCESS'">
                             <option>Select Status</option>

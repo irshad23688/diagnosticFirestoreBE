@@ -248,7 +248,7 @@ export class DailyReportsComponent implements OnInit, AfterViewInit {
   }
 
   getTotalCost() {
-    return this.transactions.map(t => t.serviceRate).reduce((acc, value) => (parseInt(acc) + parseInt(value)));
+    return this.transactions.map(t => t.payableAmount).reduce((acc, value) => (parseInt(acc) + parseInt(value)));
   }
   submit(){
     if(this.role==='Admin'){
